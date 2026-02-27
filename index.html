@@ -2,184 +2,825 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Iron Arbor Advisory</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iron Arbor Advisory | Independent Strategic Counsel</title>
+  <meta name="description" content="Iron Arbor Advisory — Independent, disciplined counsel for boards and executive leaders navigating complex strategic and fiduciary decisions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    :root {
+      --cream:    #f4efe6;
+      --offwhite: #faf8f4;
+      --olive:    #4a5240;
+      --sage:     #8a9278;
+      --gold:     #a8895c;
+      --charcoal: #2b2b26;
+      --gray:     #6e6c65;
+      --border:   #ddd8ce;
+      --dark:     #1e1e1a;
+    }
 
-  <link rel="stylesheet" href="styles.css" />
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--offwhite);
+      color: var(--charcoal);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 5vw;
+      background: rgba(250,248,244,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--olive);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--olive); }
+    .nav-cta {
+      padding: 0.6rem 1.4rem !important;
+      background: var(--olive) !important;
+      color: var(--cream) !important;
+    }
+    .nav-cta:hover { background: var(--charcoal) !important; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      padding-top: 72px;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 5vw;
+    }
+    .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.75rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 4.5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--olive);
+      margin-bottom: 1.75rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-body {
+      font-size: 1rem;
+      color: var(--gray);
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+      line-height: 1.85;
+    }
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+    .btn-primary { background: var(--olive); color: var(--cream); }
+    .btn-primary:hover { background: var(--charcoal); transform: translateY(-1px); }
+    .btn-outline { border: 1px solid var(--olive); color: var(--olive); }
+    .btn-outline:hover { background: var(--olive); color: var(--cream); }
+
+    .hero-right {
+      background: var(--olive);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(138,146,120,0.35) 0%, transparent 60%);
+    }
+    .hero-monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(10rem, 20vw, 22rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.06);
+      user-select: none;
+      letter-spacing: -0.05em;
+      position: relative; z-index: 1;
+    }
+    .hero-tagline {
+      position: absolute;
+      bottom: 3rem; left: 3rem; right: 3rem;
+      z-index: 2;
+    }
+    .hero-tagline p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: rgba(244,239,230,0.7);
+      line-height: 1.6;
+    }
+
+    /* SHARED SECTION STYLES */
+    section { padding: 6rem 5vw; }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 400;
+      color: var(--olive);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .gold-rule { width: 44px; height: 1px; background: var(--gold); margin: 1.5rem 0 2rem; }
+
+    /* PHILOSOPHY BAND */
+    #philosophy {
+      background: var(--olive);
+      padding: 5rem 5vw;
+      text-align: center;
+    }
+    #philosophy blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.3vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    #philosophy cite {
+      display: block;
+      margin-top: 1.75rem;
+      font-family: 'Jost', sans-serif;
+      font-style: normal;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    /* SERVICES */
+    #services { background: var(--offwhite); }
+    .services-lead {
+      max-width: 560px;
+      font-size: 0.95rem;
+      color: var(--gray);
+      margin-bottom: 3.5rem;
+      line-height: 1.85;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--border);
+    }
+    .service-card {
+      padding: 2.75rem 2.25rem;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .service-card:last-child { border-right: none; }
+    .service-card:hover { background: var(--cream); }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+    h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--olive);
+      margin-bottom: 0.4rem;
+    }
+    .service-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.1rem;
+    }
+    .service-desc {
+      font-size: 0.875rem;
+      color: var(--gray);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .service-list { list-style: none; font-size: 0.82rem; color: var(--gray); }
+    .service-list li {
+      padding: 0.28rem 0 0.28rem 1.1rem;
+      position: relative;
+    }
+    .service-list li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+      line-height: 1.8;
+    }
+
+    /* ABOUT */
+    #about { background: var(--cream); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.65fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-image-block { position: relative; }
+    .about-img-box {
+      aspect-ratio: 3/4;
+      background: linear-gradient(155deg, #b8c0aa 0%, var(--olive) 100%);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .about-img-box img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+      display: block;
+    }
+    .about-img-box .monogram-placeholder {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      color: rgba(255,255,255,0.2);
+      font-weight: 300;
+    }
+    .about-badge {
+      position: absolute; bottom: 0; left: 0;
+      background: var(--gold);
+      color: var(--offwhite);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.1rem;
+    }
+    .about-content p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+      line-height: 1.9;
+    }
+    .about-content p strong { color: var(--charcoal); font-weight: 400; }
+    .credentials {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 0.9rem;
+    }
+    .cred-row { display: flex; gap: 1.5rem; font-size: 0.85rem; align-items: baseline; }
+    .cred-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      min-width: 90px;
+      flex-shrink: 0;
+    }
+    .cred-val { color: var(--charcoal); }
+    .about-links { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* FOCUS AREAS */
+    #focus { background: var(--offwhite); }
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .focus-item {
+      padding: 2.25rem 1.75rem;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .focus-item:last-child { border-right: none; }
+    .focus-item:hover { background: var(--cream); }
+    .focus-roman {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+    .focus-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--olive);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .focus-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.8; }
+
+    /* TESTIMONIAL */
+    #testimonial {
+      background: var(--dark);
+      padding: 5rem 5vw;
+      text-align: center;
+    }
+    #testimonial blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    #testimonial cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-family: 'Jost', sans-serif;
+      font-style: normal;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-left p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.85;
+      margin-top: 1.25rem;
+      max-width: 420px;
+    }
+    .contact-details { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .contact-row { display: flex; gap: 1rem; align-items: center; font-size: 0.85rem; }
+    .contact-row-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      min-width: 80px;
+    }
+    .contact-row a { color: var(--charcoal); text-decoration: none; transition: color 0.2s; }
+    .contact-row a:hover { color: var(--olive); }
+
+    .booking-box {
+      background: var(--offwhite);
+      border: 1px solid var(--border);
+      padding: 2.75rem;
+    }
+    .booking-box h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--olive);
+      margin-bottom: 0.5rem;
+    }
+    .booking-note {
+      font-size: 0.82rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+    .booking-steps { list-style: none; margin-bottom: 2rem; }
+    .booking-steps li {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .booking-steps li:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      min-width: 20px;
+      line-height: 1;
+    }
+    .booking-cta {
+      display: block;
+      text-align: center;
+      padding: 1rem 2rem;
+      background: var(--olive);
+      color: var(--cream);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s;
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+    }
+    .booking-cta:hover { background: var(--charcoal); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      padding: 2.5rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(244,239,230,0.5);
+    }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(244,239,230,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(244,239,230,0.8); }
+    .footer-copy { font-size: 0.68rem; color: rgba(244,239,230,0.3); letter-spacing: 0.06em; }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 280px; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      #contact { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .service-card:last-child { border-bottom: none; }
+      .focus-grid { grid-template-columns: 1fr 1fr; }
+      .focus-item:nth-child(2) { border-right: none; }
+      .focus-item:nth-child(3),
+      .focus-item:nth-child(4) { border-top: 1px solid var(--border); }
+      .focus-item:nth-child(4) { border-right: none; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+      section { padding: 4rem 1.5rem; }
+      #contact { padding: 4rem 1.5rem; }
+      nav { padding: 1.2rem 1.5rem; }
+      .focus-grid { grid-template-columns: 1fr; }
+      .focus-item { border-right: none !important; border-top: none !important; border-bottom: 1px solid var(--border); }
+      .focus-item:last-child { border-bottom: none; }
+      footer { flex-direction: column; text-align: center; }
+      .booking-box { padding: 1.75rem; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="hero">
-  <img src="main/iaadvisory-logo-v1.jpg" alt="Iron Arbor Advisory Logo" class="logo" />
-  <h1>Iron Arbor Advisory</h1>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="IA_Advisory.jpg" alt="Iron Arbor Advisory" style="height:42px; width:auto; display:block;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#focus">Expertise</a></li>
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#contact" class="nav-cta">Request Consultation</a></li>
+  </ul>
+</nav>
 
-  <p class="tagline">
-    Independent, disciplined counsel for boards and executive leaders
-    navigating complex strategic and fiduciary decisions.
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="eyebrow fade-in">Independent Strategic Counsel</p>
+    <h1 class="fade-in">Clarity.<br><em>Discipline.</em><br>Judgment.</h1>
+    <p class="hero-body fade-in">
+      Independent counsel for boards and executive leaders navigating complex 
+      strategic and fiduciary decisions — particularly when resources are 
+      constrained and the stakes are high.
+    </p>
+    <div class="btn-row fade-in">
+      <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-monogram">IA</div>
+    <div class="hero-tagline">
+      <p>Aligning strategy, capital, and operating realities — for those with long-term fiduciary responsibility.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY BAND -->
+<div id="philosophy">
+  <blockquote>
+    "The most consequential decisions rarely come with clear answers. 
+    What they require is a disciplined framework, honest counsel, 
+    and the judgment to act with confidence."
+  </blockquote>
+  <cite>SC Sandore &mdash; Founder, Iron Arbor Advisory</cite>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label fade-in">What We Offer</p>
+  <h2 class="fade-in">Advisory Services</h2>
+  <div class="gold-rule fade-in"></div>
+  <p class="services-lead fade-in">
+    Engagements are structured to match the complexity of your situation — 
+    from ongoing thought partnership to defined-scope projects 
+    to executive-level workshops.
   </p>
-
-  <a href="#meeting" class="cta">Request a 30-Minute Consultation</a>
-</header>
-
-<section class="section bordered">
-  <h2>What I Bring to the Table</h2>
-
-  <div class="two-col">
-    <div>
-      <p>
-        I partner with organizations facing decisions where clarity,
-        discipline, and judgment matter most — particularly when
-        resources are constrained or the stakes are high.
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-num">01</div>
+      <h3>Strategic Advisory</h3>
+      <p class="service-sub">Ongoing Thought Partnership</p>
+      <p class="service-desc">
+        For organizations navigating complex decisions, capital allocation, 
+        governance matters, or periods of transition where continuity of counsel matters.
       </p>
-      <p>
-        My work centers on helping boards and executives align strategy,
-        capital, and operating realities, especially in environments
-        with long-term fiduciary responsibility.
-      </p>
-
-      <ul>
-        <li>Institutional investment & capital strategy</li>
-        <li>Organizational & operational transformation</li>
-        <li>Board-level decision support & governance</li>
-        <li>Pricing, negotiation, and financial sustainability</li>
+      <ul class="service-list">
+        <li>Board and executive advisory roles</li>
+        <li>Capital strategy &amp; financial sustainability</li>
+        <li>Organizational design &amp; operating model review</li>
+        <li>Decision support for high-stakes initiatives</li>
       </ul>
     </div>
-
-    <img src="main/sc-portrait.jpg" alt="Advisory workspace" />
-  </div>
-</section>
-
-<section class="section bordered">
-  <h2>Advisory Services</h2>
-
-  <div class="service-tier">
-    <h3>Strategic Advisory</h3>
-    <p class="tier-subhead">Ongoing thought partnership for leadership and boards</p>
-    <p>
-      Designed for organizations navigating complex decisions,
-      capital allocation, governance matters, or periods of transition.
-    </p>
-    <ul>
-      <li>Board and executive advisory roles</li>
-      <li>Capital strategy and financial sustainability</li>
-      <li>Organizational design and operating model review</li>
-      <li>Decision support for high-stakes initiatives</li>
-    </ul>
-  </div>
-
-  <div class="service-tier">
-    <h3>Project-Based Consulting</h3>
-    <p class="tier-subhead">Defined scope, clear outcomes</p>
-    <p>
-      Structured engagements focused on a specific strategic,
-      financial, or operational objective.
-    </p>
-    <ul>
-      <li>Strategy development and execution planning</li>
-      <li>Pricing, negotiation, and economic analysis</li>
-      <li>Capital deployment and investment review</li>
-      <li>Governance frameworks and performance metrics</li>
-    </ul>
-  </div>
-
-  <div class="service-tier">
-    <h3>Speaking & Workshops</h3>
-    <p class="tier-subhead">Executive-level, practical, and grounded</p>
-    <p>
-      Tailored sessions for boards, leadership teams, and institutions
-      seeking clarity rather than theory.
-    </p>
-    <ul>
-      <li>Strategy and decision-making workshops</li>
-      <li>Financial literacy for non-financial leaders</li>
-      <li>Governance, risk, and long-term planning</li>
-    </ul>
-  </div>
-</section>
-
-<section class="section bordered about">
-  <h2>About SC Sandore</h2>
-
-  <div class="two-col">
-    <img src="images/sc-portrait.jpg" alt="SC Sandore" class="portrait" />
-
-    <div>
-      <p>
-        I am a Harvard Business School MBA and CFA Program participant with
-        experience across global asset management, top-tier consulting,
-        and nonprofit governance.
+    <div class="service-card fade-in">
+      <div class="service-num">02</div>
+      <h3>Project-Based Consulting</h3>
+      <p class="service-sub">Defined Scope, Clear Outcomes</p>
+      <p class="service-desc">
+        Structured engagements focused on a specific strategic, financial, or 
+        operational objective with measurable deliverables and clear timelines.
       </p>
-      <p>
-        My background includes advising senior leadership and boards on
-        capital allocation, organizational design, pricing strategy,
-        and long-term sustainability — translating complex analysis
-        into decisions leaders can stand behind.
+      <ul class="service-list">
+        <li>Strategy development &amp; execution planning</li>
+        <li>Pricing, negotiation &amp; economic analysis</li>
+        <li>Capital deployment &amp; investment review</li>
+        <li>Governance frameworks &amp; performance metrics</li>
+      </ul>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">03</div>
+      <h3>Speaking &amp; Workshops</h3>
+      <p class="service-sub">Executive-Level, Practical, Grounded</p>
+      <p class="service-desc">
+        Tailored sessions for boards, leadership teams, and institutions 
+        seeking clarity and rigor — not theory.
       </p>
-
-      <p class="links">
-        <a href="mailto:SC@IronArborLLC.com">SC@IronArborLLC.com</a><br/>
-        <a href="https://www.linkedin.com/in/shekeylasandore" target="_blank" rel="noopener">
-          LinkedIn Profile
-        </a>
-      </p>
+      <ul class="service-list">
+        <li>Strategy &amp; decision-making workshops</li>
+        <li>Financial literacy for non-financial leaders</li>
+        <li>Governance, risk &amp; long-term planning</li>
+        <li>Investment fundamentals for board members</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<section class="section bordered">
-  <h2>Client Experience & Focus Areas</h2>
-
-  <div class="cards">
-    <div class="card">Investment & Capital Strategy</div>
-    <div class="card">Board & Executive Advisory</div>
-    <div class="card">Organizational Transformation</div>
-    <div class="card">Pricing, Negotiation & Analytics</div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-image-block fade-in">
+      <div class="about-img-box">
+        <img src="sc-portrait.jpg" alt="SC Sandore, Founder of Iron Arbor Advisory" />
+      </div>
+      <div class="about-badge">Founder &amp; Principal</div>
+    </div>
+    <div class="about-content">
+      <p class="section-label fade-in">About</p>
+      <h2 class="fade-in">SC Sandore</h2>
+      <div class="gold-rule fade-in"></div>
+      <p class="fade-in">
+        I partner with organizations facing decisions where <strong>clarity, discipline, and judgment</strong> 
+        matter most — particularly when resources are constrained or the stakes are high.
+      </p>
+      <p class="fade-in">
+        My background spans global asset management, top-tier consulting, and nonprofit governance. 
+        I have spent my career advising senior leadership and boards on capital allocation, 
+        organizational design, pricing strategy, and long-term sustainability — translating 
+        complex analysis into decisions leaders can stand behind.
+      </p>
+      <p class="fade-in">
+        Iron Arbor Advisory exists because good counsel is rare, honest counsel is rarer, 
+        and most organizations deserve both.
+      </p>
+      <div class="credentials fade-in">
+        <div class="cred-row">
+          <span class="cred-label">Education</span>
+          <span class="cred-val">Harvard Business School, MBA &middot; Brandeis University &middot; London School of Economics</span>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">CFA Program</span>
+          <span class="cred-val">Passed Levels I &amp; II, CFA Institute</span>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">Background</span>
+          <span class="cred-val">Global Asset Management &middot; Top-Tier Consulting &middot; Nonprofit Governance</span>
+        </div>
+      </div>
+      <div class="about-links fade-in">
+        <a href="#contact" class="btn btn-primary">Work With Me</a>
+        <a href="https://www.linkedin.com/in/shekeylasandore" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section bordered testimonials">
-  <h2>Client Testimonials</h2>
-
-  <blockquote>
-    “SC brings clarity and rigor to complex problems. Her ability to bridge
-    strategy, numbers, and people is rare.”
-    <span>— Client testimonial placeholder</span>
-  </blockquote>
+<!-- FOCUS AREAS -->
+<section id="focus">
+  <p class="section-label fade-in">Areas of Focus</p>
+  <h2 class="fade-in">Where I Add the Most Value</h2>
+  <div class="gold-rule fade-in"></div>
+  <div class="focus-grid">
+    <div class="focus-item fade-in">
+      <div class="focus-roman">I</div>
+      <div class="focus-title">Investment &amp; Capital Strategy</div>
+      <p class="focus-desc">Institutional-grade frameworks for capital allocation, portfolio construction, and long-term financial sustainability.</p>
+    </div>
+    <div class="focus-item fade-in">
+      <div class="focus-roman">II</div>
+      <div class="focus-title">Board &amp; Executive Advisory</div>
+      <p class="focus-desc">Independent counsel to boards and senior leaders navigating governance, fiduciary responsibility, and high-stakes decisions.</p>
+    </div>
+    <div class="focus-item fade-in">
+      <div class="focus-roman">III</div>
+      <div class="focus-title">Organizational Transformation</div>
+      <p class="focus-desc">Aligning operating models, team structures, and incentives with strategic intent — especially during periods of transition.</p>
+    </div>
+    <div class="focus-item fade-in">
+      <div class="focus-roman">IV</div>
+      <div class="focus-title">Pricing, Negotiation &amp; Analytics</div>
+      <p class="focus-desc">Quantitative and qualitative analysis to strengthen commercial positions, pricing frameworks, and negotiated outcomes.</p>
+    </div>
+  </div>
 </section>
 
-<section class="section bordered" id="meeting">
-  <h2>Request a 30-Minute Consultation</h2>
-  <p>
-    Select an available time at the link below. Meetings are limited to 30 minutes
-    and pre-screened to ensure fit.
+<!-- ARTICLES -->
+<section id="articles" style="background: var(--cream);">
+  <p class="section-label fade-in">Writing &amp; Perspectives</p>
+  <h2 class="fade-in">Articles</h2>
+  <div class="gold-rule fade-in"></div>
+  <p class="fade-in" style="max-width:560px; font-size:0.95rem; color:var(--gray); margin-bottom:3rem; line-height:1.85;">
+    Practical perspectives on strategy, capital, governance, and the decisions that define organizations.
   </p>
-<!-- Google Calendar Appointment Scheduling begin -->
-<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-<script>
-(function() {
-  var target = document.currentScript;
-  window.addEventListener('load', function() {
-    calendar.schedulingButton.load({
-      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1XZfd4ZYrzbA3S6m_J3FXdTkf70XxtVGEN41fq879BPSd-u23yLufba9AuZy3fESp79piS9l9w?gv=true',
-      color: '#A79B8E',
-      label: 'Google Booking Link',
-      target,
-    });
-  });
-})();
-</script>
-<!-- end Google Calendar Appointment Scheduling -->
-  
-  </section>
+  <div class="services-grid fade-in" style="grid-template-columns: repeat(3,1fr);">
+    <!-- Article 1 placeholder -->
+    <div class="service-card" style="display:flex; flex-direction:column; gap:0.75rem;">
+      <p style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);">Strategy</p>
+      <h3 style="font-size:1.2rem;">Article Title Here</h3>
+      <p class="service-desc">A brief description of the article topic and its key insight for board members and executive leaders.</p>
+      <a href="#" style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--olive); text-decoration:none; margin-top:auto;">Read More &rarr;</a>
+    </div>
+    <!-- Article 2 placeholder -->
+    <div class="service-card" style="display:flex; flex-direction:column; gap:0.75rem;">
+      <p style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);">Governance</p>
+      <h3 style="font-size:1.2rem;">Article Title Here</h3>
+      <p class="service-desc">A brief description of the article topic and its key insight for board members and executive leaders.</p>
+      <a href="#" style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--olive); text-decoration:none; margin-top:auto;">Read More &rarr;</a>
+    </div>
+    <!-- Article 3 placeholder -->
+    <div class="service-card" style="display:flex; flex-direction:column; gap:0.75rem;">
+      <p style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);">Capital Strategy</p>
+      <h3 style="font-size:1.2rem;">Article Title Here</h3>
+      <p class="service-desc">A brief description of the article topic and its key insight for board members and executive leaders.</p>
+      <a href="#" style="font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--olive); text-decoration:none; margin-top:auto;">Read More &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<div id="testimonial">
+  <blockquote>
+    "SC brings clarity and rigor to complex problems. Her ability to bridge 
+    strategy, numbers, and people is rare."
+  </blockquote>
+  <cite>Client &mdash; Board Advisory Engagement</cite>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <p class="section-label fade-in">Let's Connect</p>
+    <h2 class="fade-in">Request a<br>30-Minute Consultation</h2>
+    <div class="gold-rule fade-in"></div>
+    <p class="fade-in">
+      Consultations are limited and pre-screened to ensure fit. 
+      If there is a mutual opportunity, we will discuss next steps at the end of the call.
+    </p>
+    <div class="contact-details fade-in">
+      <div class="contact-row">
+        <span class="contact-row-label">Email</span>
+        <a href="/cdn-cgi/l/email-protection#237060636a514c4d6251414c516f6f600d404c4e"><span class="__cf_email__" data-cfemail="396a7a79704b5657784b5b564b75757a175a5654">[email&#160;protected]</span></a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/shekeylasandore" target="_blank" rel="noopener">linkedin.com/in/shekeylasandore</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-label">Location</span>
+        <span>Available Nationwide &amp; Virtually</span>
+      </div>
+    </div>
+  </div>
+  <div class="booking-box fade-in">
+    <h4>Schedule Your Consultation</h4>
+    <p class="booking-note">
+      All meetings are conducted via video or phone and limited to 30 minutes. 
+      Please complete the brief intake form when booking.
+    </p>
+    <ul class="booking-steps">
+      <li><span class="step-num">1</span> Click below to view available times</li>
+      <li><span class="step-num">2</span> Complete the brief intake form</li>
+      <li><span class="step-num">3</span> Receive a confirmation with meeting details</li>
+    </ul>
+    <!-- REPLACE href with your Calendly link once you have it -->
+    <a href="/cdn-cgi/l/email-protection#e7b4a4a7ae958889a695858895ababa4c984888ad89492858d828493daa4888994928b9386938e8889c2d5d7b5829692829493" class="booking-cta">
+      Request a Consultation
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <p>© Iron Arbor Holdings, LLC</p>
+  <img src="IA_Advisory.jpg" alt="Iron Arbor Advisory" style="height:36px; width:auto; opacity:0.5;" />
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#focus">Expertise</a></li>
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://www.linkedin.com/in/shekeylasandore" target="_blank" rel="noopener">LinkedIn</a></li>
+  </ul>
+  <div style="text-align:right;">
+    <p class="footer-copy">&copy; 2025 Iron Arbor Advisory</p>
+    <p class="footer-copy" style="margin-top:0.3rem; font-size:0.6rem; opacity:0.6;">A service of Iron Arbor Holdings, LLC</p>
+  </div>
 </footer>
 
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70)
