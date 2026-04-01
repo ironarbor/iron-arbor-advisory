@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iron Arbor Advisory | Operational Infrastructure for Companies in Transition</title>
+  <meta name="description" content="Iron Arbor Advisory builds operational infrastructure for companies in transition — the operating systems, reporting frameworks, and accountability structures that let leadership teams execute consistently." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f4efe6; --offwhite: #faf8f4; --olive: #4a5240;
+      --sage: #8a9278; --gold: #a8895c; --charcoal: #2b2b26;
+      --gray: #6e6c65; --border: #ddd8ce; --dark: #1e1e1a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--offwhite); color: var(--charcoal); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 5vw; background: rgba(250,248,244,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-logo { text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--olive); }
+    .nav-cta { padding: 0.6rem 1.4rem !important; background: var(--olive) !important; color: var(--cream) !important; }
+    .nav-cta:hover { background: var(--charcoal) !important; }
+    #hero { min-height: 100vh; display: grid; grid-template-columns: 55% 45%; padding-top: 72px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem 6rem 5vw; }
+    .eyebrow { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.75rem; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 4.5vw, 5.5rem); font-weight: 300; line-height: 1.05; color: var(--olive); margin-bottom: 1.75rem; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-body { font-size: 1rem; color: var(--gray); max-width: 440px; margin-bottom: 2.5rem; line-height: 1.85; }
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 0.9rem 2.2rem; font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: background 0.25s, color 0.25s, transform 0.2s; }
+    .btn-primary { background: var(--olive); color: var(--cream); }
+    .btn-primary:hover { background: var(--charcoal); transform: translateY(-1px); }
+    .btn-outline { border: 1px solid var(--olive); color: var(--olive); }
+    .btn-outline:hover { background: var(--olive); color: var(--cream); }
+    .hero-right { background: var(--olive); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 4rem 3rem; }
+    .hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(138,146,120,0.35) 0%, transparent 60%); }
+    .hero-monogram { font-family: 'Cormorant Garamond', serif; font-size: clamp(8rem, 16vw, 18rem); font-weight: 300; color: rgba(255,255,255,0.06); user-select: none; letter-spacing: -0.05em; position: absolute; z-index: 1; }
+    .journey-map { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; gap: 0; }
+    .journey-tagline { font-family: 'Cormorant Garamond', serif; font-style: normal; font-size: clamp(1rem, 1.5vw, 1.15rem); font-weight: 400; color: rgba(244,239,230,0.65); margin-bottom: 2.75rem; line-height: 1.65; }
+    .journey-steps { display: flex; flex-direction: column; gap: 0; position: relative; padding-left: 1.75rem; }
+    .journey-steps::before { content: ''; position: absolute; left: 0; top: 0.5rem; bottom: 0.5rem; width: 1px; background: linear-gradient(to bottom, var(--gold), rgba(168,137,92,0.15)); }
+    .journey-step { display: flex; flex-direction: column; gap: 0.3rem; padding: 0 0 0.5rem 1.5rem; position: relative; }
+    .journey-step::before { content: ''; position: absolute; left: -0.3rem; top: 0.55rem; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(168,137,92,0.2); }
+    .journey-step-label { font-size: 0.84rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cream); font-weight: 400; line-height: 1; }
+    .journey-step-desc { font-size: 0.92rem; color: rgba(244,239,230,0.65); line-height: 1.6; margin-top: 0.2rem; margin-bottom: 0.25rem; }
+    .journey-arrow { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.2rem; opacity: 0.6; padding: 0.15rem 0 0.15rem 1.5rem; line-height: 1; }
+    section { padding: 6rem 5vw; }
+    .section-label { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 3rem); font-weight: 400; color: var(--olive); line-height: 1.15; margin-bottom: 1.25rem; }
+    .gold-rule { width: 44px; height: 1px; background: var(--gold); margin: 1.5rem 0 2rem; }
+    #philosophy { background: var(--olive); padding: 5rem 5vw; text-align: center; }
+    #philosophy blockquote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 2.3vw, 2rem); font-weight: 300; font-style: italic; color: var(--cream); max-width: 800px; margin: 0 auto; line-height: 1.7; }
+    #philosophy cite { display: block; margin-top: 1.75rem; font-family: 'Jost', sans-serif; font-style: normal; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); }
+    #services { background: var(--offwhite); }
+    .services-lead { max-width: 620px; font-size: 0.95rem; color: var(--gray); margin-bottom: 3.5rem; line-height: 1.85; }
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--border); }
+    .service-card { padding: 2.75rem 2.25rem; border-right: 1px solid var(--border); transition: background 0.3s; }
+    .service-card:last-child { border-right: none; }
+    .service-card:hover { background: var(--cream); }
+    .service-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--border); line-height: 1; margin-bottom: 1.25rem; }
+    h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 500; color: var(--olive); margin-bottom: 0.4rem; }
+    .service-sub { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+    .service-desc { font-size: 0.875rem; color: var(--gray); line-height: 1.85; margin-bottom: .55rem; }
+    .service-list { list-style: none; font-size: 0.82rem; color: var(--gray); }
+    .service-list li { padding: 0.28rem 0 0.28rem 1.1rem; position: relative; }
+    .service-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; line-height: 1.8; }
+    #about { background: var(--cream); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.65fr; gap: 5rem; align-items: start; }
+    .about-image-block { position: relative; }
+    .about-img-box { aspect-ratio: 3/4; background: linear-gradient(155deg, #b8c0aa 0%, var(--olive) 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .about-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .about-badge { position: absolute; bottom: 0; left: 0; background: var(--gold); color: var(--offwhite); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.65rem 1.1rem; }
+    .about-content p { font-size: 0.95rem; color: var(--gray); margin-bottom: 1.2rem; line-height: 1.9; }
+    .about-content p strong { color: var(--charcoal); font-weight: 400; }
+    .credentials { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0; }
+    .cred-row { display: grid; grid-template-columns: 90px 1fr; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+    .cred-row:last-child { border-bottom: none; }
+    .cred-label { font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); padding-top: 0.15rem; }
+    .cred-content { display: flex; flex-direction: column; gap: 0.2rem; }
+    .cred-institution { font-size: 0.88rem; color: var(--charcoal); font-weight: 400; }
+    .cred-detail { font-size: 0.75rem; color: var(--gray); line-height: 1.6; }
+    .about-links { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    #founder { background: var(--offwhite); }
+    .founder-inner { max-width: 760px; }
+    .founder-body { font-family: 'Cormorant Garamond', serif; font-size: clamp(.7rem, 1.8vw, .9rem); font-weight: 300; line-height: 1.85; color: var(--charcoal); margin-bottom: 1.5rem; }
+    .founder-sig { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--gold); margin-top: 2rem; }
+    #focus { background: var(--cream); }
+    .focus-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); margin-top: 3rem; }
+    .focus-item { padding: 2.25rem 1.75rem; border-right: 1px solid var(--border); transition: background 0.3s; }
+    .focus-item:last-child { border-right: none; }
+    .focus-item:hover { background: var(--offwhite); }
+    .focus-roman { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 1rem; font-weight: 300; }
+    .focus-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--olive); margin-bottom: 0.6rem; line-height: 1.3; }
+    .focus-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.8; }
+    #articles { background: var(--offwhite); }
+    .articles-grid { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--border); margin-top: 3rem; }
+    .article-card { padding: 2.75rem 2.25rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.75rem; transition: background 0.3s; }
+    .article-card:last-child { border-right: none; }
+    .article-card:hover { background: var(--cream); }
+    .article-cat { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .article-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; color: var(--olive); line-height: 1.3; }
+    .article-status { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); }
+    #testimonial { background: var(--dark); padding: 5rem 5vw; text-align: center; }
+    #testimonial blockquote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.35rem, 2.2vw, 1.9rem); font-weight: 300; font-style: italic; color: var(--cream); max-width: 720px; margin: 0 auto; line-height: 1.7; }
+    #testimonial cite { display: block; margin-top: 1.5rem; font-family: 'Jost', sans-serif; font-style: normal; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); }
+    #resources { background: var(--cream); }
+    .resources-lead { max-width: 520px; font-size: 0.95rem; color: var(--gray); margin-bottom: 3rem; line-height: 1.85; }
+    .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .resource-card { border: 1px solid var(--border); padding: 2rem; background: var(--offwhite); transition: border-color 0.3s; }
+    .resource-card:hover { border-color: var(--gold); }
+    .resource-type { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .resource-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; color: var(--olive); margin-bottom: 0.5rem; line-height: 1.3; }
+    .resource-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.75; margin-bottom: 1.25rem; }
+    .resource-link { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--border); text-decoration: none; }
+    #newsletter { background: var(--olive); padding: 4rem 5vw; text-align: center; }
+    #newsletter h2 { color: var(--cream); margin-bottom: 0.75rem; }
+    .newsletter-sub { font-size: 0.95rem; color: rgba(244,239,230,0.7); max-width: 520px; margin: 0 auto 2rem; line-height: 1.8; }
+    .newsletter-form { display: flex; max-width: 480px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.2); }
+    .newsletter-form input { flex: 1; padding: 0.9rem 1.25rem; background: rgba(255,255,255,0.08); border: none; color: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 300; outline: none; }
+    .newsletter-form input::placeholder { color: rgba(244,239,230,0.4); }
+    .newsletter-form button { padding: 0.9rem 1.75rem; background: var(--gold); color: var(--offwhite); border: none; font-family: 'Jost', sans-serif; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .newsletter-form button:hover { background: var(--charcoal); }
+    .newsletter-note { font-size: 0.68rem; color: rgba(244,239,230,0.35); margin-top: 1rem; }
+    #contact { background: var(--offwhite); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-left p { font-size: 0.95rem; color: var(--gray); line-height: 1.85; margin-top: 1.25rem; max-width: 420px; }
+    .contact-details { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .contact-row { display: flex; gap: 1rem; align-items: center; font-size: 0.85rem; }
+    .contact-row-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); min-width: 80px; }
+    .contact-row a { color: var(--charcoal); text-decoration: none; transition: color 0.2s; }
+    .contact-row a:hover { color: var(--olive); }
+    .booking-box { background: var(--cream); border: 1px solid var(--border); padding: 2.75rem; }
+    .booking-box h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--olive); margin-bottom: 0.5rem; }
+    .booking-note { font-size: 0.82rem; color: var(--gray); margin-bottom: 2rem; line-height: 1.75; }
+    .booking-steps { list-style: none; margin-bottom: 2rem; }
+    .booking-steps li { display: flex; gap: 1rem; font-size: 0.85rem; color: var(--gray); padding: 0.6rem 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+    .booking-steps li:last-child { border-bottom: none; }
+    .step-num { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold); min-width: 20px; line-height: 1; }
+    .booking-cta { display: block; text-align: center; padding: 1rem 2rem; background: var(--olive); color: var(--cream); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: background 0.25s; font-family: 'Jost', sans-serif; font-weight: 400; }
+    .booking-cta:hover { background: var(--charcoal); }
+    footer { background: var(--dark); padding: 2.5rem 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(244,239,230,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(244,239,230,0.8); }
+    .footer-copy { font-size: 0.68rem; color: rgba(244,239,230,0.3); letter-spacing: 0.06em; }
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 320px; padding: 3rem 2rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      #contact { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .service-card:last-child { border-bottom: none; }
+      .articles-grid { grid-template-columns: 1fr; }
+      .article-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .article-card:last-child { border-bottom: none; }
+      .focus-grid { grid-template-columns: 1fr 1fr; }
+      .focus-item:nth-child(2) { border-right: none; }
+      .focus-item:nth-child(3), .focus-item:nth-child(4) { border-top: 1px solid var(--border); }
+      .focus-item:nth-child(4) { border-right: none; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .newsletter-form { flex-direction: column; }
+    }
+    @media (max-width: 560px) {
+      section { padding: 4rem 1.5rem; }
+      #contact { padding: 4rem 1.5rem; }
+      #newsletter { padding: 3rem 1.5rem; }
+      nav { padding: 1.2rem 1.5rem; }
+      .focus-grid { grid-template-columns: 1fr; }
+      .focus-item { border-right: none !important; border-top: none !important; border-bottom: 1px solid var(--border); }
+      .focus-item:last-child { border-bottom: none; }
+      footer { flex-direction: column; text-align: center; }
+      .booking-box { padding: 1.75rem; }
+      .cred-row { grid-template-columns: 1fr; gap: 0.25rem; }
+    }
+
+    /* Iron Arbor Method stages block */
+    .method-stages { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); margin: 2.5rem 0 3rem; }
+    .method-stage { padding: 2.25rem 2rem; border-right: 1px solid var(--border); }
+    .method-stage:last-child { border-right: none; }
+    .method-stage-label { font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+    .method-stage-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 500; color: var(--olive); margin-bottom: 0.75rem; }
+    .method-stage-desc { font-size: 0.875rem; color: var(--gray); line-height: 1.85; }
+    .services-sublabel { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin: 3rem 0 1rem; }
+    @media (max-width: 960px) {
+      .method-stages { grid-template-columns: 1fr; }
+      .method-stage { border-right: none; border-bottom: 1px solid var(--border); }
+      .method-stage:last-child { border-bottom: none; }
+    }
+
+    /* ── Hero gap line ───────────────────────────────── */
+    .hero-gap-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--olive);
+      margin-bottom: 2.5rem;
+      line-height: 1.4;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.1rem;
+    }
+
+    /* ── Stats strip ─────────────────────────────────── */
+    #stats {
+      background: var(--charcoal);
+      padding: 4rem 5vw;
+    }
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid rgba(255,255,255,0.08);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .stat-item {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-figure {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4vw, 4rem);
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .stat-desc {
+      font-size: 0.82rem;
+      color: rgba(244,239,230,0.65);
+      line-height: 1.75;
+      margin-bottom: 0.5rem;
+    }
+    .stat-source {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(244,239,230,0.3);
+    }
+    .stats-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .stats-header p {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+    }
+    .stats-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.35;
+    }
+
+   
+
+    /* ── Scope trust note ────────────────────────────── */
+    .scope-trust {
+      margin-top: 2.5rem;
+      padding: 1.75rem 2rem;
+      border-left: 2px solid var(--gold);
+      background: var(--cream);
+    }
+    .scope-trust p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--charcoal);
+      line-height: 1.75;
+      margin-bottom: 0.5rem;
+    }
+    .scope-trust p:last-child { margin-bottom: 0; }
+    .scope-trust strong {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--olive);
+    }
+
+    /* ── AI training formats ─────────────────────────── */
+    .ai-training {
+      margin-top: 1.25rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+    }
+    .ai-training-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .ai-format {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--gray);
+      padding: 0.3rem 0;
+      line-height: 1.6;
+    }
+    .ai-format-name {
+      font-weight: 400;
+      color: var(--charcoal);
+      min-width: 130px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 960px) {
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .stat-item:last-child { border-bottom: none; }
+      .trigger-row { grid-template-columns: 1fr; }
+      .trigger-cell { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem 1.25rem; }
+      .trigger-cell:last-child { border-bottom: none; }
+      .trigger-row.header-row { display: none; }
+      .trigger-cell.header { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="IA_Advisory.jpg" alt="Iron Arbor Advisory" style="height:42px;width:auto;display:block;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">The IA Method</a></li>
+    <li><a href="#about">Principal Advisor</a></li>
+    <li><a href="#articles">Perspectives</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="https://calendly.com/ia-advisory-sc/30min" target="_blank" rel="noopener" class="nav-cta">Request Consultation</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <p class="eyebrow">Operational Infrastructure for Companies in Transition</p>
+    <h1>Clarity.<br><em>Discipline.</em><br>Judgment.</h1>
+    <p class="hero-body">Iron Arbor Advisory builds the operating systems, reporting frameworks, and accountability structures that let leadership teams in transition execute consistently.</p>
+    <div class="btn-row">
+      <a href="https://calendly.com/ia-advisory-sc/30min" target="_blank" rel="noopener" class="btn btn-primary">Request a Consultation</a>
+      <a href="#IAMethod" class="btn btn-outline">THe IA Method</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-monogram">IA</div>
+    <div class="journey-map">
+      <p class="journey-tagline">The Iron Arbor Method, A 3-Stage Framework</p>
+      <div class="journey-steps">
+        <div class="journey-step">
+          <div class="journey-step-label">Diagnose</div>
+          <div class="journey-step-desc">Structured diagnostic of the current state to identify gaps in operational systems and infrastructure.</div>
+        </div>
+        <div class="journey-arrow">↓</div>
+        <div class="journey-step">
+          <div class="journey-step-label">Design</div>
+          <div class="journey-step-desc">Strategic design of operating systems and reporting frameworks to fill operational gaps and clarify prioritization and accountability.</div>
+        </div>
+        <div class="journey-arrow">↓</div>
+        <div class="journey-step">
+          <div class="journey-step-label">Deploy</div>
+          <div class="journey-step-desc">Defined-scope implementation with execution support, operating guide delivery, and live calibration.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <p class="section-label">3-Stage Framework</p>
+  <h2>The Iron Arbor Method</h2>
+  <div class="gold-rule"></div>
+  <p class="services-lead">The Iron Arbor Method is a 3-stage framework that builds AI-enabled operating infrastructure &#8212; the systems and workflows that allow leadership teams to execute consistently, report credibly, and evolve with scale.
+  <br> 
+    <br>Diagnostic through deployment — infrastructure components built, installed, and running with AI embedded throughout.
+    
+
+
+  <p style="font-size:1.05rem; color:var(--charcoal); font-weight:400; max-width:760px; margin-bottom:2.5rem; line-height:1.85;"></p>
+  <div class="method-stages">
+    <div class="method-stage">
+      <div class="service-num">Stage 1</div>
+      <div class="method-stage-title">Diagnose</div>
+      <p class="method-stage-desc">A structured operational diagnostic to identify exactly where the infrastructure is weak or missing. Key stakeholder input drives the insight for the following deliverable outputs: 
+     <ul class="service-list">
+        <li>Key stakeholder insight reports</li>
+        <li>Decision rights assessment</li>
+        <li>Operating model gap map, prioritized with clear picture of structural needs </li>
+        <li>Recommended next steps</li>
+      </ul> 
+    </div>
+    <div class="method-stage">
+          <div class="service-num">Stage 2</div>
+      <div class="method-stage-title">Design</div>
+      <p class="method-stage-desc">Strategic design of operating systems, reporting frameworks, and accountability structures to fill operational gaps and clarify prioritization and decision rights.</p>
+        <ul class="service-list">
+        <li>Board &amp; investor reporting infrastructure</li>
+        <li>Organizational accountability systems</li>
+        <li>Decision rights and operating rhythms</li>
+        <li>Self-sustaining AI workflow integration</li>
+      </ul>
+    </div>
+    <div class="method-stage">
+          <div class="service-num">Stage 3</div>
+      <div class="method-stage-title">Deploy</div>
+      <p class="method-stage-desc">Defined-scope implementation with execution support, operating guide delivery, and live calibration during the engagement</p>
+    </div>
+  </div>
+
+        <h3>AI Capability Transfer</h3>
+
+      <div class="ai-training">
+        <p class="ai-training-label">Training and Guidance Options </p>
+        <div class="ai-format">
+          <span class="ai-format-name">Leadership Workshop</span>
+          <span>Half-day live session — leaders run real workflows with real data before the engagement closes</span>
+        </div>
+        <div class="ai-format">
+          <span class="ai-format-name">Prompt Library</span>
+          <span>Company-specific prompts calibrated to their KPIs, reporting cadence, and investor language — delivered as a Notion database or document</span>
+        </div>
+        <div class="ai-format">
+          <span class="ai-format-name">Recorded Walkthroughs</span>
+          <span>10–15 minute workflow recordings built in the client's actual system — for onboarding and reference after handoff</span>
+        </div>
+      </div>
+    
+    
+  
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="about-image-block">
+      <div class="about-img-box">
+        <img src="sc-portrait.jpg" alt="SC Sandore, Principal Advisor and Founder of Iron Arbor Advisory" />
+      </div>
+      <div class="about-badge">Principal Advisor &amp; Founder</div>
+    </div>
+    <div class="about-content">
+      <p class="section-label">About</p>
+      <h2>SC Sandore</h2>
+      <div class="gold-rule"></div>
+      <p>Shekeyla (SC) Sandore is the Principal Advisor and Founder of Iron Arbor Advisory. Prior to founding the firm, she was a <strong>Consultant at Boston Consulting Group</strong>, where she led engagements in digital transformation, operating model design, and executive performance reporting.</p>
+      <p>Before BCG, she spent five years at <strong>Wellington Management Company</strong>, holding roles in global multi-asset strategy and institutional consultant relations, with primary coverage of over $25 billion in assets.</p>
+      <p>That investor-side experience shapes how Iron Arbor Advisory works. SC knows what a credible operating system and board report look like from the investor seat — what signals competence, what signals chaos, and what gets a leadership team the benefit of the doubt when a quarter gets hard.</p>
+      <p>SC currently serves as a Trustee on the Board of the Pioneer Valley Montessori Society, applying her governance and executive reporting expertise to build the institution's infrastructure and enhance staff efficiency and oversight consistency.</p>
+      <div class="credentials">
+        <div class="cred-row">
+          <span class="cred-label">Education</span>
+           
+           </div>
+        <div class="cred-row">
+          <span class="cred-label"></span>
+          <div class="cred-content">
+            <span class="cred-institution">Harvard Business School</span>
+            <span class="cred-detail">Master in Business Administration &middot; Pricing Strategy, Negotiation, Executing Strategy, Applied Business Analytics</span>
+          </div>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label"></span>
+          <div class="cred-content">
+            <span class="cred-institution">Brandeis University</span>
+            <span class="cred-detail">Bachelor of Arts, cum laude &middot; Economics &amp; Politics</span>
+          </div>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label"></span>
+          <div class="cred-content">
+            <span class="cred-institution">London School of Economics and Political Science</span>
+            <span class="cred-detail">General Course Programme &middot; Economics, Statistics &amp; Corporate Finance</span>
+          </div>
+        </div>
+         <div class="cred-row">
+             <span class="cred-label"></span>
+          <div class="cred-content">
+            <span class="cred-institution">CFA Institute</span>
+            <span class="cred-detail">Passed Levels I &amp; II of the CFA Program</span>
+        </div>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">Technical Credentials</span>
+          
+           </div>
+        <div class="cred-row">
+          <span class="cred-label"></span>
+          <div class="cred-content">
+            <span class="cred-institution">IAPP</span>
+            <span class="cred-detail">AIGP AI Governance Professional</span>
+          </div>
+        </div>
+             <div class="cred-row">
+                         <span class="cred-label"></span>
+                      <div class="cred-content">
+            <span class="cred-institution">Google AI</span>
+            <span class="cred-detail">AI Professional Course </span>
+            </div>
+        </div>
+                     <div class="cred-row">
+           <span class="cred-label"></span>
+                      <div class="cred-content">
+            <span class="cred-institution">PMI-CPMAI</span>
+            <span class="cred-detail">PMI Certified Professional in Managing AI </span>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="about-links">
+        <a href="https://calendly.com/ia-advisory-sc/30min" target="_blank" rel="noopener" class="btn btn-primary">Connect</a>
+        <a href="https://www.linkedin.com/in/shekeylasandore" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="articles" style="background:var(--cream);">
+  <p class="section-label">Writing &amp; Perspectives</p>
+  <h2>Articles</h2>
+  <div class="gold-rule"></div>
+  <p style="max-width:520px;font-size:0.95rem;color:var(--gray);margin-bottom:0;line-height:1.85;">Practical perspectives on strategy, governance, and the decisions that define organizations.</p>
+  <div class="articles-grid">
+    <div class="article-card">
+      <p class="article-cat">Strategy</p>
+      <p class="article-title">Execution Without Infrastructure: Why Strategy Fails When Operational Alignment Doesn't Exist</p>
+      <p class="article-status">Published March 2026 &nbsp;&middot;&nbsp; <a href="/article/Execution1.pdf" class="resource-link" style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;">View Article</a></p>
+    </div>
+    <div class="article-card">
+      <p class="article-cat">Leadership &amp; Technology</p>
+      <p class="article-title">The Distorted Mirror: How AI Is Warping Managers' Expectations of Young Talent</p>
+      <p class="article-status">Publishing Q2 2026</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="resources">
+  <p class="section-label">Tools &amp; Perspectives</p>
+  <h2>Resources</h2>
+  <div class="gold-rule"></div>
+  <p class="resources-lead">Downloadable documents and perspectives from Iron Arbor Advisory.</p>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <p class="resource-type">PDF &mdash; Methodology</p>
+      <p class="resource-title">The Iron Arbor Method</p>
+      <p class="resource-desc">A concise overview of the three-stage engagement framework — DIAGNOSE, BUILD, ACTIVATE — what each stage delivers, and how the work is scoped.</p>
+      <a href="/pdfs/iron-arbor-method.pdf" class="resource-link">View PDF</a>
+    </div>
+    <div class="resource-card">
+      <p class="resource-type">PDF &mdash; Founder Bio</p>
+      <p class="resource-title">SC Sandore — Principal Advisor &amp; Founder</p>
+      <p class="resource-desc">One-page biography and credential summary for speaking, board, and advisory inquiries.</p>
+      <a href="/pdfs/founder-bio.pdf" class="resource-link">View PDF</a>
+    </div>
+    <div class="resource-card">
+      <p class="resource-type">PDF &mdash; Illustrative Engagement</p>
+      <p class="resource-title">What an Engagement Looks Like</p>
+      <p class="resource-desc">A walkthrough of a composite engagement — from diagnostic through activation — showing what gets found, what gets built, and what changes.</p>
+      <a href="" class="resource-link">Publishing Q2 2026</a>
+    </div>
+  </div>
+</section>
+
+<div id="newsletter">
+  <h2>Stay Informed</h2>
+  <p class="newsletter-sub">Perspectives on strategy, execution, and the decisions that define organizations. Subscribe for occasional insights — no noise, no cadence commitments.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Your email address" />
+    <button type="button">Subscribe</button>
+  </div>
+  <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+</div>
+
+<section id="contact">
+  <div class="contact-left">
+    <p class="section-label">Let's Connect</p>
+    <h2>Request a<br>30-Minute Consultation</h2>
+    <div class="gold-rule"></div>
+    <p>Consultations are limited and pre-screened to ensure fit. If there is a mutual opportunity, I'll outline next steps at the end of the call.</p>
+    <div class="contact-details">
+      <div class="contact-row">
+        <span class="contact-row-label">Email</span>
+        <a href="/cdn-cgi/l/email-protection#491a0a09003b2627083b2b263b05050a672a2624"><span class="__cf_email__" data-cfemail="441707040d362b2a0536262b360808076a272b29">[email&#160;protected]</span></a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/shekeylasandore" target="_blank" rel="noopener">linkedin.com/in/shekeylasandore</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-row-label">Location</span>
+        <span>Western Massachusetts &mdash; Available Nationwide &amp; Virtually</span>
+      </div>
+    </div>
+  </div>
+  <div class="booking-box">
+    <h4>Schedule Your Consultation</h4>
+    <p class="booking-note">All meetings are conducted via video or phone and limited to 30 minutes. Please complete the brief intake form when booking.</p>
+    <ul class="booking-steps">
+      <li><span class="step-num">1</span> Click below to view available times</li>
+      <li><span class="step-num">2</span> Complete the brief intake form</li>
+      <li><span class="step-num">3</span> Receive a confirmation with meeting details</li>
+    </ul>
+    <a href="https://calendly.com/ia-advisory-sc/30min" target="_blank" rel="noopener" class="booking-cta">Request a Consultation</a>
+  </div>
+</section>
+
+<footer>
+  <img src="IA_Advisory.jpg" alt="Iron Arbor Advisory" style="height:36px;width:auto;opacity:0.5;" />
+  <ul class="footer-links">
+    <li><a href="#services">The IA Method</a></li>
+    <li><a href="#about">Principal Advisor</a></li>
+    <li><a href="#triggers">Companies in Transition</a></li>
+    <li><a href="#articles">Perspectives</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://www.linkedin.com/in/shekeylasandore" target="_blank" rel="noopener">LinkedIn</a></li>
+ 
